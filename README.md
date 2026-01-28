@@ -79,6 +79,8 @@ Only fields relevant to transaction identity, amount, card metadata, and fraud l
 - Idempotent ETL (table cleared before reload)
 - Schema constraints enforced at DB level
 
+---
+
 ## 3️⃣ Model / Analytics Development
 
 This project intentionally does not train a predictive ML model.
@@ -98,6 +100,8 @@ In many production payment systems:
 - Rule-based and statistical checks are often deployed before ML.
 
 This mirrors real enterprise pipelines.
+
+---
 
 ## 4️⃣ Production Considerations
 
@@ -134,4 +138,73 @@ This mirrors real enterprise pipelines.
 | Heavy analytics queries | Pagination + caching         |
 ```
 
+---
 
+## 5️⃣ Scale Signals
+
+### Current performance (local)
+
+```
+{
+  "rows_loaded": 590540,
+  "seconds": 51.23,
+  "rows_per_sec": 11526.47
+}
+```
+
+### What would change at larger scale?
+
+- Partition tables by date
+- Incremental ingestion instead of full reloads
+- Redis for shared caching
+- Materialized views for metrics
+- Move batch jobs to Spark or scheduled workflows (Airflow)
+
+---
+
+## 6️⃣ Project Structure
+
+```
+payments-etl-postgres-api/
+├── app/
+│   ├── main.py
+│   ├── db.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── crud.py
+│   └── routers/
+│       ├── etl.py
+│       ├── transactions.py
+│       └── metrics.py
+│
+├── jobs/
+│   ├── run_etl.py
+│   └── profile_data.py
+│
+├── data/
+│   └── train_transaction.csv
+│
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 7️⃣ Why This Project
+
+This project was built to demonstrate:
+
+- Backend API design
+- Data engineering fundamentals
+- ETL reliability at scale
+- Real-world payments data handling
+- Production thinking beyond toy ML models
+
+It aligns closely with FinTech, payments, and enterprise data platform roles.
+
+---
+
+📌 License
+
+MIT License
