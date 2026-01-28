@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# Runtime data (do NOT commit)
+data/*
+!data/.gitkeep
+
+# OS
+.DS_Store
