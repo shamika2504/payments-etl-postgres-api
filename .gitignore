@@ -4,17 +4,23 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Virtual environments
-venv/
+# Env / secrets
 .env
 .env.*
+*.env
 
-# VS Code
+# Virtual environments
+venv/
+.venv/
+
+# OS / editor
+.DS_Store
 .vscode/
 
-# Runtime data (do NOT commit)
+# Data (keep folder structure only)
 data/*
 !data/.gitkeep
+!data/**/.gitkeep
 
-# OS
-.DS_Store
+# Logs
+*.log
